@@ -11,3 +11,8 @@ filtered_values = df.loc[mask, 'values_column']
 ```
 data["col_name"]=data["col_name"].astype(str)
 ```
+
+- To arrange the sns.countplot in order
+```
+https://www.statology.org/seaborn-countplot-order/
+```
