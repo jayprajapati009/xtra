@@ -25,3 +25,23 @@ def generate_distplot(variable):
     plt.legend()
     plt.show()
 ```
+
+- percentage in crosstabs
+```
+import pandas as pd
+
+# Create a sample dataframe
+data = {
+    'Target': [1, 0, 1, 0, 1, 1, 0],
+}
+df = pd.DataFrame(data)
+
+# Perform crosstab
+crosstab = pd.crosstab(index=df['Target'], columns='count')
+
+# Calculate percentages
+total = crosstab['count'].sum()
+percentage_crosstab = crosstab.apply(lambda x: x / total * 100, axis=0)
+
+print(percentage_crosstab)
+```
