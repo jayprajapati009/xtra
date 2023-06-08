@@ -45,3 +45,40 @@ percentage_crosstab = crosstab.apply(lambda x: x / total * 100, axis=0)
 
 print(percentage_crosstab)
 ```
+
+- Subplots
+```
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Create a sample dataframe
+data = {
+    'Category': ['A', 'A', 'B', 'B', 'B', 'C', 'C'],
+    'Value': [1, 2, 3, 4, 5, 6, 7]
+}
+df = pd.DataFrame(data)
+
+# Create subplots
+fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+
+# Create displots on each subplot
+sns.histplot(data=df[df['Category'] == 'A'], x='Value', kde=True, ax=axes[0, 0])
+sns.histplot(data=df[df['Category'] == 'B'], x='Value', kde=True, ax=axes[0, 1])
+sns.histplot(data=df[df['Category'] == 'C'], x='Value', kde=True, ax=axes[1, 0])
+
+# Remove the last subplot (axes[1, 1])
+fig.delaxes(axes[1, 1])
+
+# Set titles for each subplot
+axes[0, 0].set_title('Category A')
+axes[0, 1].set_title('Category B')
+axes[1, 0].set_title('Category C')
+
+# Adjust spacing between subplots
+plt.tight_layout()
+
+# Display the plot
+plt.show()
+
+```
