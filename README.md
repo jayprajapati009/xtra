@@ -82,3 +82,46 @@ plt.tight_layout()
 plt.show()
 
 ```
+
+```
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Create a sample dataframe
+data = {
+    'Category': ['A', 'A', 'B', 'B', 'B', 'C', 'C'],
+    'Value': [1, 2, 3, 4, 5, 6, 7]
+}
+df = pd.DataFrame(data)
+
+# Create subplots
+fig, axes = plt.subplots(1, 3, figsize=(10, 4))
+
+# Create histograms on each subplot
+sns.histplot(data=df[df['Category'] == 'A'], x='Value', kde=True, ax=axes[0])
+sns.histplot(data=df[df['Category'] == 'B'], x='Value', kde=True, ax=axes[1])
+sns.histplot(data=df[df['Category'] == 'C'], x='Value', kde=True, ax=axes[2])
+
+# Set titles for each subplot
+axes[0].set_title('Category A')
+axes[1].set_title('Category B')
+axes[2].set_title('Category C')
+
+# Set individual legends for each subplot
+axes[0].legend(['Category A'])
+axes[1].legend(['Category B'])
+axes[2].legend(['Category C'])
+
+# Set individual x-axis limits for each subplot
+axes[0].set_xlim(0, 5)
+axes[1].set_xlim(0, 10)
+axes[2].set_xlim(0, 10)
+
+# Adjust spacing between subplots
+plt.tight_layout()
+
+# Display the plot
+plt.show()
+
+```
