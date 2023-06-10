@@ -125,3 +125,33 @@ plt.tight_layout()
 plt.show()
 
 ```
+
+- Feature imp
+```
+
+# Load libraries
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
+from sklearn.model_selection import train_test_split # Import train_test_split function
+from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Get feature importances
+importances = clf.feature_importances_
+
+# Create a dataframe with feature names and importances
+feature_importances = pd.DataFrame({'Feature': <Put cols>, 'Importance': importances})
+
+# Sort the dataframe by importance in descending order
+feature_importances = feature_importances.sort_values('Importance', ascending=False)
+
+# Plot the feature importances using Seaborn
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=feature_importances, palette='viridis')
+plt.xlabel('Importance')
+plt.ylabel('Feature')
+plt.title('Decision Tree - Feature Importances')
+plt.show()
+```
