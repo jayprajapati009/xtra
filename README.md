@@ -155,3 +155,45 @@ plt.ylabel('Feature')
 plt.title('Decision Tree - Feature Importances')
 plt.show()
 ```
+
+- subplots for all variables
+```
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+variable_list = df0.columns.tolist()
+
+# Calculate the number of rows and columns for subplots
+num_variables = len(variable_list)
+num_rows = (num_variables + 1) // 2
+num_cols = min(2, num_variables)
+
+# Create subplots with the specified number of rows and columns
+fig, axes = plt.subplots(num_rows, num_cols, figsize=(12, 6))
+
+# Flatten the axes array to make it easier to iterate over
+axes = axes.flatten()
+
+# Iterate over the variable list and create KDE plots in each subplot
+for i, variable in enumerate(variable_list):
+    # Select the appropriate subplot for the current variable
+    ax = axes[i]
+    
+    # Plot the KDE plots for TARGET=0 and TARGET=1 on the selected subplot
+    sns.kdeplot(df_transact[df_transact['TARGET'] == 0][variable], color="green", shade=True, cut=0, ax=ax)
+    sns.kdeplot(df_transact[df_transact['TARGET'] == 1][variable], color="red", shade=True, cut=0, ax=ax)
+    
+    # Set the title of the subplot to the variable name
+    ax.set_title(variable)
+    
+# Remove any empty subplots if the number of variables is not a multiple of 2
+if num_variables % 2 != 0:
+    fig.delaxes(axes[-1])
+
+# Adjust the spacing between subplots
+fig.tight_layout()
+
+# Display the subplots
+plt.show()
+
+```
