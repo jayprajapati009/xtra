@@ -11,3 +11,17 @@ with open('output.txt', 'w') as file:
     for row_str in df_str:
         file.write(row_str)
 ```
+
+```
+import pandas as pd
+
+# Convert DataFrame to string row-wise
+df_str = iv.apply(lambda row: row.astype(str).str.cat(sep=' '), axis=1)
+
+# Create a DataFrame with the row-wise strings
+output_df = pd.DataFrame(df_str, columns=['Row Strings'])
+
+# Write the DataFrame to an Excel file
+output_df.to_excel('output.xlsx', index=False)
+
+```
